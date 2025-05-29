@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-namespace Match3d.Core
+namespace Match3d.Core.Common
 {
     public static class SceneLoader
     {
