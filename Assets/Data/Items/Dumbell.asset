@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c6b8306ba2f7740b94111f27bd00d6, type: 3}
+  m_Name: Dumbell
+  m_EditorClassIdentifier: 
+  _type: 4
+  _meshFilter: {fileID: -5792652658077794812, guid: 3561b9085a9be8a44b73defbf745eb85, type: 3}
+  _meshCollider: {fileID: -5792652658077794812, guid: 3561b9085a9be8a44b73defbf745eb85, type: 3}
+  _sprite: {fileID: 21300000, guid: aad62e61547d46e458cf15a3d423091e, type: 3}
