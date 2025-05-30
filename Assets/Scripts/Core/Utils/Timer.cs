@@ -2,7 +2,7 @@
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Match3d.Gameplay.Utils
+namespace Match3d.Core.Utils
 {
     [UnityEngine.Scripting.Preserve]
     public class Timer : ITickable

@@ -2,7 +2,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Match3d.Core;
 using System;
-using Match3d.Core.Common;
+using Match3d.Core.Scene;
 
 namespace Match3d.Scene
 {

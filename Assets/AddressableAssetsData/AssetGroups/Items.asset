@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Items
+  m_EditorClassIdentifier: 
+  m_GroupName: Items
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c5aba5e18a0b5fe45a98359f9b3e3e3d
+  m_SerializeEntries:
+  - m_GUID: 00363e3484030d24885244841db6f1fc
+    m_Address: BasketballBall
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1535c4f43afa232468aef001125985e6
+    m_Address: Perfume
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fa8177aee141ee448cac1d14678d7b6
+    m_Address: Crown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce25c8727e6d8b4da75dc776e75121b
+    m_Address: ChristmasBoot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72dc8b53addaa7145a798c5031d01168
+    m_Address: Lipstick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74024610b1418034abdcb6e0258fd161
+    m_Address: Snowman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f7cf874d7804fc49983211f353fa0e6
+    m_Address: Banana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3864792e76c9054091cd35a4240d760
+    m_Address: TopHead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4d6e6e2c04bfcd4b9895de209efc8ee
+    m_Address: Dumbell
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0817a80e886f2849aa7ef58f6af0f2e
+    m_Address: SoccerBall
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameItem
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c2a0845e1e72d6f4093226d9905e4ddb, type: 2}
+  m_SchemaSet:
+    m_Schemas: []
