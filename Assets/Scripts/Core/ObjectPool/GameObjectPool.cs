@@ -11,6 +11,8 @@ namespace Match3d.Core
         private readonly T _prefab;
         private readonly HashSet<T> _pooledObjects;
 
+        public IReadOnlyCollection<T> PooledObjects => _pooledObjects;
+
         public GameObjectPool(T prefab, Transform parent = null, int initialCapacity = 10, int maxSize = 100)
         {
             _prefab = prefab;
@@ -35,14 +37,19 @@ namespace Match3d.Core
         public void Release(T obj)
         {
             _objectPool.Release(obj);
-            _pooledObjects.Remove(obj);
         }
 
         public void Preload(int count)
         {
-            for (int i = 0; i < count; i++)
+            var temp = new T[count];
+            for (var i = 0; i < count; i++)
             {
-                Release(Get());
+                temp[i] = _objectPool.Get();
+            }
+
+            for (var i = 0; i < count; i++)
+            {
+                _objectPool.Release(temp[i]);
             }
         }
 

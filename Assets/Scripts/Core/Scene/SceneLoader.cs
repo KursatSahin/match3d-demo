@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-namespace Match3d.Core.Common
+namespace Match3d.Core.Scene
 {
     public static class SceneLoader
     {
@@ -47,15 +47,29 @@ namespace Match3d.Core.Common
 
                 await UniTask.WaitUntil(() => loadedScene.isLoaded, cancellationToken: cancellationToken);
 
+                var rootObjects = loadedScene.GetRootGameObjects();
+                ISceneBootstrapper sceneBootstrapper = null;
+                
+                foreach (var rootObject in rootObjects)
+                {
+                    if (!rootObject.TryGetComponent(out sceneBootstrapper))
+                    {
+                        continue;
+                    }
+                    await sceneBootstrapper.InitializeAsync(cancellationToken, progress);
+                    break;
+                }
+                
                 progress?.Report(1f);
                 await UniTask.Yield(cancellationToken: cancellationToken);
 
                 SceneManager.SetActiveScene(loadedScene);
+                cancellationToken = (sceneBootstrapper as MonoBehaviour).GetCancellationTokenOnDestroy();
 
                 var unloadSceneAsync = SceneManager.UnloadSceneAsync(currentScene);
                 await unloadSceneAsync.ToUniTask(cancellationToken: cancellationToken);
 
-                
+                sceneBootstrapper?.OnSceneActivated();
             }
             catch (OperationCanceledException exception)
             {
