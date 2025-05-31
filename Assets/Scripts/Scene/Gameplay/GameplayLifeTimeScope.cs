@@ -19,6 +19,7 @@ namespace Match3d.Scene
         {
             builder.Register<LevelLoader>(Lifetime.Scoped);
             builder.Register<SlotContainer>(Lifetime.Scoped);
+            builder.Register<GameplayDataContainer>(Lifetime.Scoped);
             builder.Register<Timer>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             
             builder.RegisterComponent(_gameSceneBootstrapper);

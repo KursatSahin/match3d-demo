@@ -22,6 +22,7 @@ namespace Match3d.Scene
         [Inject] private Timer _levelTimer;
         [Inject] private MonoGameObjectPool _gameObjectPool;
         [Inject] private ItemDataProvider _itemDataProvider;
+        [Inject] private GameplayDataContainer _gameplayDataContainer;
         
         public async UniTask LoadLevelAsync(CancellationToken token)
         {
@@ -55,7 +56,7 @@ namespace Match3d.Scene
 
             foreach (var goalItem in levelData.Data.goalItems)
             {
-                // TODO : Add all goals to a list
+                _gameplayDataContainer.AddGoal(goalItem.type, goalItem.count);
             }
 
             foreach (var gameItem in levelData.Data.layoutItems)
@@ -77,7 +78,11 @@ namespace Match3d.Scene
                     recycledItem.transform.localScale = new Vector3(scale, scale, scale);
                     
                     // TODO : Add all game items to a list
+                    _gameplayDataContainer.Items.Add(recycledItem);
                 }
+                
+                _gameplayDataContainer.AddItemCount(gameItem.type, itemCount);
+                    
             }
             
             _levelTimer.SetTimer(levelData.Data.seconds);
