@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Match3d.Gameplay.Item;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Level
 {
@@ -8,8 +9,8 @@ namespace Gameplay.Level
     public struct LevelModel
     {
         public int seconds;
-        public List<LevelGoals> itemOrders;
-        public List<LevelLayout> itemLayouts;
+        public List<LevelGoals> goalItems;
+        public List<LevelLayout> layoutItems;
     }
     
     [Serializable]

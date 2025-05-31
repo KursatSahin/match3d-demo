@@ -17,6 +17,7 @@ namespace Match3d.Core
         {
             _prefab = prefab;
             _parent = parent;
+            _pooledObjects = new HashSet<T>();
             _objectPool = new ObjectPool<T>(
                 createFunc: CreatePooledItem,
                 actionOnGet: OnTakeFromPool,

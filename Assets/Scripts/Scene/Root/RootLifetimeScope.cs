@@ -20,7 +20,7 @@ namespace Match3d.Gameplay
             DontDestroyOnLoad(gameItemPoolInstance);
 
             builder.Register<IDataManager, DataManager>(Lifetime.Singleton);
-            builder.Register<IIUIViewFactory, AddressableUIViewFactory>(Lifetime.Singleton);
+            builder.Register<IUIViewFactory, AddressableUIViewFactory>(Lifetime.Singleton);
 
             builder.RegisterInstance(gameItemPoolInstance).AsSelf().AsImplementedInterfaces();
         }

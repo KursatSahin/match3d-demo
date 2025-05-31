@@ -23,7 +23,7 @@ namespace Match3d.Core.Scene
 
         #endregion
         
-        [Inject] protected IIUIViewFactory uiViewFactory;
+        [Inject] protected IUIViewFactory uiViewFactory;
         [Inject] protected IObjectResolver container;
 
         public abstract UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null);

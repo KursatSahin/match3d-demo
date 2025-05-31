@@ -1,20 +1,45 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Match3d.Core.DataManager;
 using Match3d.Core.Scene;
+using VContainer;
 
 namespace Match3d.Scene
 {
     public class GameSceneBootstrapper : SceneBootstrapper
     {
-        public override UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null)
+        private const string viewKey = "GameplayView";
+        
+        [Inject] private LevelLoader _levelLoader;
+        [Inject] private GameplayManager _gameplayManager;
+        [Inject] private IDataManager _dataManager;
+        
+        public override async UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public void OnSceneActivated()
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var currentLevel = _dataManager.Load().currentLevel;
+                var isCanceled = await _levelLoader.LoadLevelAsync(this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+                if (isCanceled)
+                {
+                    throw new Exception($"Failed to load the level {currentLevel}.");
+                }
+                
+                var view = await uiViewFactory.CreateAsync(viewKey, _sceneEnvironment, container, token);
+                if (view == null)
+                {
+                    throw new Exception($"Couldn't create the view. key: {viewKey}");
+                }
+                view.SetUICamera(_uiCamera);
+                view.Go.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError(e);
+                throw;
+            }
+            
         }
     }
 }
