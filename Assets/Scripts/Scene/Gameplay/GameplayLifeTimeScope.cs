@@ -18,6 +18,7 @@ namespace Match3d.Scene
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<LevelLoader>(Lifetime.Scoped);
+            builder.Register<SlotContainer>(Lifetime.Scoped);
             builder.Register<Timer>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             
             builder.RegisterComponent(_gameSceneBootstrapper);

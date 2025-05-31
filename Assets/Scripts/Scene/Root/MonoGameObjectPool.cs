@@ -25,7 +25,7 @@ namespace Match3d.Gameplay
             return _gameItemPool.Get();
         }
 
-        public void ReleaseItemPrototype(ItemBase gameItem)
+        public void ReleaseItem(ItemBase gameItem)
         {
             _gameItemPool.Release(gameItem);
         }
@@ -36,7 +36,7 @@ namespace Match3d.Gameplay
             {
                 if (gameItem.gameObject.activeInHierarchy)
                 {
-                    ReleaseItemPrototype(gameItem);
+                    ReleaseItem(gameItem);
                 }
             }
         }

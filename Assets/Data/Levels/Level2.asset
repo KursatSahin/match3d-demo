@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     seconds: 90
-    itemOrders:
-    - type: 3
-      count: 6
+    goalItems:
     - type: 4
-      count: 6
-    itemLayouts:
-    - type: 3
-      minVolume: 1
-      maxVolume: 3
-      count: 10
-    - type: 4
-      minVolume: 1
-      maxVolume: 3
-      count: 10
+      count: 3
     - type: 5
-      minVolume: 1
-      maxVolume: 3
-      count: 10
+      count: 6
+    layoutItems:
+    - type: 4
+      minVolume: 3
+      maxVolume: 5
+      count: 5
+    - type: 5
+      minVolume: 3
+      maxVolume: 5
+      count: 5
     - type: 6
-      minVolume: 1
-      maxVolume: 3
-      count: 20
+      minVolume: 3
+      maxVolume: 5
+      count: 5
+    - type: 7
+      minVolume: 3
+      maxVolume: 5
+      count: 5

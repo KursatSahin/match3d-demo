@@ -36,7 +36,7 @@ namespace Match3d.Scene
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                UnityEngine.Debug.LogError(e);
                 throw;
             }
             
