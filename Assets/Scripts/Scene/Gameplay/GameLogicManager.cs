@@ -156,7 +156,7 @@ namespace Match3d.Scene
             
             var popup = await _viewFactory.CreateAsync("EndGamePopupSuccess", _sceneEnvironment, _container, this.GetCancellationTokenOnDestroy());
             popup.SetUICamera(_camera);
-            popup.Go.SetActive(true);
+            popup.GameObject.SetActive(true);
         }
 
         
@@ -167,7 +167,7 @@ namespace Match3d.Scene
             
             var popup = await _viewFactory.CreateAsync("EndGamePopupFail", _sceneEnvironment, _container, this.GetCancellationTokenOnDestroy());
             popup.SetUICamera(_camera);
-            popup.Go.SetActive(true);
+            popup.GameObject.SetActive(true);
         }
         
         public void EndGameplay()

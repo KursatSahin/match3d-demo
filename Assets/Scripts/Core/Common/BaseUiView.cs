@@ -10,7 +10,7 @@ namespace Match3d.Core.Common
 
         #endregion
 
-        public GameObject Go => gameObject;
+        public GameObject GameObject => gameObject;
 
         public virtual void SetUICamera(Camera cam)
         {

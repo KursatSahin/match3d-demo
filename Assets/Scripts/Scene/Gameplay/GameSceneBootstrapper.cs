@@ -45,7 +45,7 @@ namespace Match3d.Scene
                     throw new Exception($"Couldn't create the view. key: {viewKey}");
                 }
                 view.SetUICamera(_uiCamera);
-                view.Go.SetActive(true);
+                view.GameObject.SetActive(true);
             }
             catch (Exception e)
             {

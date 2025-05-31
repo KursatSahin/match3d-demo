@@ -24,7 +24,7 @@ namespace Match3d.Scene
                 }
                 
                 view.SetUICamera(_uiCamera);
-                view.Go.SetActive(true);
+                view.GameObject.SetActive(true);
 
                 var data = _dataManager.Load();
                 if (data == null)
