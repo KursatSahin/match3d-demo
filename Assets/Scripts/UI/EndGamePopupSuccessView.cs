@@ -12,7 +12,7 @@ public class EndGamePopupSuccessView : BaseUiView
 
     #endregion
         
-    [Inject] private GameplayManager _gameplayManager;
+    [Inject] private GameLogicManager _gameLogicManager;
 
     private void OnEnable()
     {
@@ -26,6 +26,6 @@ public class EndGamePopupSuccessView : BaseUiView
 
     private void OnConfirmButtonClicked()
     {
-        _gameplayManager.EndGameplay();
+        _gameLogicManager.EndGameplay();
     }
 }

@@ -8,7 +8,7 @@ using VContainer;
 
 namespace Match3d.Scene
 {
-    public class GameplayView : BaseUiView
+    public class GameUIView : BaseUiView
     {
         #region Inspector
 
@@ -23,7 +23,7 @@ namespace Match3d.Scene
 
         [Inject] private Timer _levelTimer;
         [Inject] private IDataManager _dataManager;
-        [Inject] private GameplayManager _gameplayManager;
+        [Inject] private GameLogicManager _gameLogicManager;
 
         [Inject]
         private void Initialize()

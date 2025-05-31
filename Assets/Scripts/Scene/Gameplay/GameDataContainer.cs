@@ -4,7 +4,7 @@ using Match3d.Gameplay.Item;
 
 namespace Match3d.Scene
 {
-    public class GameplayDataContainer
+    public class GameDataContainer
     {
         public event Action<ItemData.ItemType, int> OnGoalProgressUpdated;
         public event Action OnAllGoalsCompleted;

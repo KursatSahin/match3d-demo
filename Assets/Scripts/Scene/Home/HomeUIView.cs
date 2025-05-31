@@ -12,7 +12,7 @@ using VContainer;
 
 namespace Match3d.Scene
 {
-    public class HomeView : BaseUiView
+    public class HomeUIView : BaseUiView
     {
         #region Inspector
 

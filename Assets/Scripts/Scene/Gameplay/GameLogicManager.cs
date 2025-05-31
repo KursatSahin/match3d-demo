@@ -16,7 +16,7 @@ using VContainer;
 
 namespace Match3d.Scene
 {
-    public class GameplayManager : MonoBehaviour
+    public class GameLogicManager : MonoBehaviour
     {
         #region Inspector
 
@@ -30,7 +30,7 @@ namespace Match3d.Scene
         [Inject] private IDataManager _dataManager;
         [Inject] private Timer _levelTimer;
         [Inject] private SlotContainer _slotContainer;
-        [Inject] private GameplayDataContainer _gameplayDataContainer;
+        [Inject] private GameDataContainer _gameDataContainer;
 
         private const int MatchCount = 3;
 
@@ -56,7 +56,7 @@ namespace Match3d.Scene
         private void OnEnable()
         {
             _levelTimer.TimerEnd += OnTimerEnd;
-            _gameplayDataContainer.OnAllGoalsCompleted += OnAllGoalCompleted;
+            _gameDataContainer.OnAllGoalsCompleted += OnAllGoalCompleted;
         }
 
         
@@ -64,7 +64,7 @@ namespace Match3d.Scene
         private void OnDisable()
         {
             _levelTimer.TimerEnd -= OnTimerEnd;
-            _gameplayDataContainer.OnAllGoalsCompleted -= OnAllGoalCompleted;
+            _gameDataContainer.OnAllGoalsCompleted -= OnAllGoalCompleted;
         }
 
         private void FixedUpdate()

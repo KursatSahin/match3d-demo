@@ -6,12 +6,12 @@ using VContainer.Unity;
 
 namespace Match3d.Scene
 {
-    public class GameplayLifeTimeScope : LifetimeScope
+    public class GameLifeTimeScope : LifetimeScope
     {
         #region Inspector
 
         [SerializeField] private GameSceneBootstrapper _gameSceneBootstrapper;
-        [SerializeField] private GameplayManager _gameManager;
+        [SerializeField] private GameLogicManager _gameManager;
         [SerializeField] private ItemDataProvider _itemDataProvider;
 
         #endregion
@@ -19,7 +19,7 @@ namespace Match3d.Scene
         {
             builder.Register<LevelLoader>(Lifetime.Scoped);
             builder.Register<SlotContainer>(Lifetime.Scoped);
-            builder.Register<GameplayDataContainer>(Lifetime.Scoped);
+            builder.Register<GameDataContainer>(Lifetime.Scoped);
             builder.Register<Timer>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
             
             builder.RegisterComponent(_gameSceneBootstrapper);

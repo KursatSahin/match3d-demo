@@ -9,7 +9,7 @@ namespace Match3d.Scene
 {
     public class HomeSceneBootstrapper: SceneBootstrapper
     {
-        private const string viewKey = "HomeView";
+        private const string viewKey = "HomeUIView";
         
         [Inject] private IDataManager _dataManager;
         

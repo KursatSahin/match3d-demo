@@ -16,10 +16,10 @@ namespace Match3d.Scene
 
         #endregion
         
-        private const string viewKey = "GameplayView";
+        private const string viewKey = "GameUIView";
         
         [Inject] private LevelLoader _levelLoader;
-        [Inject] private GameplayManager _gameplayManager;
+        [Inject] private GameLogicManager _gameLogicManager;
         [Inject] private IDataManager _dataManager;
         [Inject] private SlotContainer _slotContainer;
         
