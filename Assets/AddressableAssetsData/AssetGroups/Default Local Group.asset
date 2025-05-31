@@ -33,7 +33,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ade93d2b528bc34db661e6b25b1330c
-    m_Address: GameUI
+    m_Address: GameplayView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

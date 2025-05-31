@@ -5,7 +5,7 @@ using VContainer;
 
 namespace Match3d.Core.Common
 {
-    public interface IIUIViewFactory
+    public interface IUIViewFactory
     {
         public UniTask<IUIView> CreateAsync(string address, Transform parent, IObjectResolver container, CancellationToken token);
     }

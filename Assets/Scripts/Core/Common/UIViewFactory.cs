@@ -10,7 +10,7 @@ using VContainer.Unity;
 namespace Match3d.Core.Common
 {
     [UnityEngine.Scripting.Preserve]
-    public class AddressableUIViewFactory : IIUIViewFactory
+    public class AddressableUIViewFactory : IUIViewFactory
     {
         public async UniTask<IUIView> CreateAsync(string address, Transform parent, IObjectResolver container, CancellationToken token)
         {
