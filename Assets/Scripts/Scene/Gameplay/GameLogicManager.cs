@@ -95,15 +95,16 @@ namespace Match3d.Scene
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out var hitInfo, 50, _itemsLayerMask);
-            if (!hitInfo.collider)
-            {
-                return;
-            }
+            
+            if (!hitInfo.collider) return;
             
             var hitItemBase = hitInfo.collider.GetComponent<ItemBase>();
             
             var matchData = _slotContainer.GetAvailableSlot(hitItemBase);
-            var isMatched = _isInputDisabled = (matchData.Count == MatchCount);
+
+            var remaining = _gameDataContainer.GetCount(hitItemBase.Type);
+            
+            var isMatched = _isInputDisabled = (matchData.Count == MatchCount || matchData.Count == remaining);
             
             hitItemBase.JumpToSlot(matchData.AvailableSlot, isMatched ? () => DestroyMatchedItems(matchData.MatchedItems) : null);
         }
@@ -119,8 +120,10 @@ namespace Match3d.Scene
             {
                 item.MoveToMergePoint(new Vector3(mergePointX, 0, item.transform.position.z + offset), () => _gameItemPool.ReleaseItem(item));
             }
-            
+
+            _gameDataContainer.RemoveItemCount(items[0].Type, items.Count);
             _slotContainer.ReleaseLastMatchedSlots();
+            
             DOVirtual.DelayedCall(0.5f, () => _isInputDisabled = false);
         }
 

@@ -306,6 +306,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295967893270862904, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410665131177858905, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_text
+      value: 1%
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410665131177858905, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 8505289909300251290, guid: 74aab282b1c2e1941bef7d77c1c3da6a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
