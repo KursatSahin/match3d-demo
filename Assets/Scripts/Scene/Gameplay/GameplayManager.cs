@@ -77,6 +77,11 @@ namespace Match3d.Scene
 
         public void Update()
         {
+            if (_slotContainer.IsFull && !_isInputDisabled)
+            {
+                OpenEndGamePopupFail().Forget();
+                return;
+            }
             
             if (Input.GetMouseButtonDown(0) && !_isInputDisabled && !_isGamePaused)
             {
@@ -95,9 +100,26 @@ namespace Match3d.Scene
             
             var hitItemBase = hitInfo.collider.GetComponent<ItemBase>();
             
-            Debug.Log($"Hit Game Item: {hitItemBase.name}");
+            var matchData = _slotContainer.GetAvailableSlot(hitItemBase);
+            var isMatched = _isInputDisabled = (matchData.Count == MatchCount);
             
-            _gameItemPool.ReleaseItem(hitItemBase);
+            hitItemBase.JumpToSlot(matchData.AvailableSlot, isMatched ? () => DestroyMatchedItems(matchData.MatchedItems) : null);
+        }
+
+        private void DestroyMatchedItems(IReadOnlyList<ItemBase> items)
+        {
+            const float offset = 1f;
+            var firstPositionX = items[0].transform.position.x;
+            var lastPositionX = items[^1].transform.position.x;
+            var mergePointX = (firstPositionX + lastPositionX) / 2;
+
+            foreach (var item in items)
+            {
+                item.MoveToMergePoint(new Vector3(mergePointX, 0, item.transform.position.z + offset), () => _gameItemPool.ReleaseItem(item));
+            }
+            
+            _slotContainer.ReleaseLastMatchedSlots();
+            DOVirtual.DelayedCall(0.5f, () => _isInputDisabled = false);
         }
 
         private void OnGoalCompleted()
@@ -141,6 +163,14 @@ namespace Match3d.Scene
             var popup = await _viewFactory.CreateAsync("EndGamePopupFail", _sceneEnvironment, _container, this.GetCancellationTokenOnDestroy());
             popup.SetUICamera(_camera);
             popup.Go.SetActive(true);
+        }
+        
+        public void EndGameplay()
+        {
+            DOTween.KillAll();
+            _gameItemPool.ReleaseAll();
+
+            SceneLoader.LoadSceneAsync(GameConstants.SceneNames.Home, this.GetCancellationTokenOnDestroy()).Forget();
         }
     }
 }

@@ -4,6 +4,7 @@ using Match3d.Core;
 using Match3d.Core.Common;
 using Match3d.Core.DataManager;
 using Match3d.Core.Scene;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace Match3d.Scene
 
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _restartDataButton;
+        [SerializeField] private TextMeshProUGUI _levelLabelText;
 
         #endregion
 
@@ -26,6 +28,8 @@ namespace Match3d.Scene
         {
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _restartDataButton.onClick.AddListener(OnRestartDataButtonClicked);
+            
+            _levelLabelText.text = $"Level {_dataManager.Load().currentLevel}";
         }
 
         private void OnDisable()
