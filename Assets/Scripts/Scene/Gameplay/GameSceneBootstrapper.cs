@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Match3d.Core.DataManager;
 using Match3d.Core.Scene;
+using Match3d.Gameplay.Level;
 using UnityEngine;
 using VContainer;
 

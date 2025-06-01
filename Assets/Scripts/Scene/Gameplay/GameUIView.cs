@@ -28,8 +28,6 @@ namespace Match3d.Scene
         [Inject]
         private void Initialize()
         {
-            //itemSlotsController.SetSlotTransforms(_Slots);
-
             _level.SetText($"Level {_dataManager.Load().currentLevel}");
             OnTimerTick(_levelTimer.RemainingSeconds);
         }
@@ -62,7 +60,7 @@ namespace Match3d.Scene
 
         private void OnCloseButtonClicked()
         {
-            //_gameplayManager.CloseButtonClicked();
+            
         }
     }
 }
