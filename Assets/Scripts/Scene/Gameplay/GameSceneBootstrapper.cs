@@ -23,7 +23,7 @@ namespace Match3d.Scene
         [Inject] private IDataManager _dataManager;
         [Inject] private SlotContainer _slotContainer;
         
-        public override async UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null)
+        public override async UniTask InitializeAsync(CancellationToken token, ISceneOptions options = null, IProgress<float> progress = null)
         {
             try
             {

@@ -31,4 +31,10 @@ public class EndGamePopupFailView : BaseUiView
     {
         _gameLogicManager.EndGameplay();
     }
+    
+    public override void SetUICamera(Camera cam)
+    {
+        base.SetUICamera(cam);
+        _canvas.sortingLayerName = "Popup";
+    }
 }

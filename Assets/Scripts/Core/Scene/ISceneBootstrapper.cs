@@ -10,7 +10,7 @@ namespace Match3d.Core.Scene
 {
     public interface ISceneBootstrapper
     {
-        public UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null);
+        public UniTask InitializeAsync(CancellationToken token,  ISceneOptions options = null, IProgress<float> progress = null);
         public void OnSceneActivated();
     }
     
@@ -26,7 +26,9 @@ namespace Match3d.Core.Scene
         [Inject] protected IUIViewFactory uiViewFactory;
         [Inject] protected IObjectResolver container;
 
-        public abstract UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null);
+        public abstract UniTask InitializeAsync(CancellationToken token, ISceneOptions options = null, IProgress<float> progress = null);
         public virtual void OnSceneActivated(){}
     }
+    
+    
 }

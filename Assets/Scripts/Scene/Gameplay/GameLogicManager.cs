@@ -175,7 +175,7 @@ namespace Match3d.Scene
             DOTween.KillAll();
             _gameItemPool.ReleaseAll();
 
-            SceneLoader.LoadSceneAsync(GameConstants.SceneNames.Home, this.GetCancellationTokenOnDestroy()).Forget();
+            SceneLoader.LoadSceneAsync(GameConstants.SceneNames.Loader, this.GetCancellationTokenOnDestroy(), options: new LoaderSceneOptions { SceneName = GameConstants.SceneNames.Home }).Forget();
         }
     }
 }

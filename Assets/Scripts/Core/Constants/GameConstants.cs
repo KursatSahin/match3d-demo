@@ -7,6 +7,7 @@ namespace Match3d.Core
             public const string Splash = "Splash";
             public const string Home = "Home";
             public const string Game = "Game";
+            public const string Loader = "Loader";
         }
     }
 }
