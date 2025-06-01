@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_text
       value: NEXT LEVEL
       objectReference: {fileID: 0}
+    - target: {fileID: 674490931436819981, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5973837075565824886, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -103,6 +107,22 @@ PrefabInstance:
     - target: {fileID: 7482008815055958804, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
       propertyPath: m_Name
       value: EndGamePopupSuccess
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034035257132268566, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
+      propertyPath: m_Color.a
+      value: 0.60784316
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034035257132268566, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034035257132268566, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034035257132268566, guid: 6a3f3a0fcb09230428f5f00a82fbeb03, type: 3}
+      propertyPath: m_Color.r
+      value: 0.009433985
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

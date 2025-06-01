@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Ground
   - Items
-  - 
+  - Popup
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3105781961
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 1048715891
+    locked: 0
+  - name: UI
+    uniqueID: 2509599409
+    locked: 0
+  - name: Popup
+    uniqueID: 3534185865
     locked: 0

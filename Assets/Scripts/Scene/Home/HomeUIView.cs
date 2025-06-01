@@ -12,7 +12,7 @@ using VContainer;
 
 namespace Match3d.Scene
 {
-    public class HomeView : BaseUiView
+    public class HomeUIView : BaseUiView
     {
         #region Inspector
 
@@ -42,7 +42,7 @@ namespace Match3d.Scene
         {
             try
             {
-                await SceneLoader.LoadSceneAsync(GameConstants.SceneNames.Game, this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+                await SceneLoader.LoadSceneAsync(GameConstants.SceneNames.Loader, this.GetCancellationTokenOnDestroy(), options: new LoaderSceneOptions { SceneName = GameConstants.SceneNames.Game }).SuppressCancellationThrow();
             }
             catch (Exception)
             {

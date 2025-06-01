@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Match3d.Gameplay.Item;
 using UnityEngine.Serialization;
 
-namespace Gameplay.Level
+namespace Match3d.Gameplay.Level
 {
     [Serializable]
     public struct LevelModel

@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Match3d.Core.DataManager;
 using Match3d.Core.Scene;
+using Match3d.Gameplay.Level;
 using UnityEngine;
 using VContainer;
 
@@ -16,14 +17,14 @@ namespace Match3d.Scene
 
         #endregion
         
-        private const string viewKey = "GameplayView";
+        private const string viewKey = "GameUIView";
         
         [Inject] private LevelLoader _levelLoader;
-        [Inject] private GameplayManager _gameplayManager;
+        [Inject] private GameLogicManager _gameLogicManager;
         [Inject] private IDataManager _dataManager;
         [Inject] private SlotContainer _slotContainer;
         
-        public override async UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null)
+        public override async UniTask InitializeAsync(CancellationToken token, ISceneOptions options = null, IProgress<float> progress = null)
         {
             try
             {
@@ -45,7 +46,7 @@ namespace Match3d.Scene
                     throw new Exception($"Couldn't create the view. key: {viewKey}");
                 }
                 view.SetUICamera(_uiCamera);
-                view.Go.SetActive(true);
+                view.GameObject.SetActive(true);
             }
             catch (Exception e)
             {

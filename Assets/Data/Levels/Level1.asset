@@ -23,16 +23,16 @@ MonoBehaviour:
     - type: 0
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 6
     - type: 1
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 6
     - type: 2
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 9
     - type: 3
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 3

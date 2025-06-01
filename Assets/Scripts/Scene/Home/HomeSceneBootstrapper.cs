@@ -9,11 +9,11 @@ namespace Match3d.Scene
 {
     public class HomeSceneBootstrapper: SceneBootstrapper
     {
-        private const string viewKey = "HomeView";
+        private const string viewKey = "HomeUIView";
         
         [Inject] private IDataManager _dataManager;
         
-        public override async UniTask InitializeAsync(CancellationToken token, IProgress<float> progress = null)
+        public override async UniTask InitializeAsync(CancellationToken token, ISceneOptions options = null, IProgress<float> progress = null)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace Match3d.Scene
                 }
                 
                 view.SetUICamera(_uiCamera);
-                view.Go.SetActive(true);
+                view.GameObject.SetActive(true);
 
                 var data = _dataManager.Load();
                 if (data == null)

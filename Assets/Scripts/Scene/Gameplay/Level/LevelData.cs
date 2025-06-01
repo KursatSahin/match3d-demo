@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Level
+namespace Match3d.Gameplay.Level
 {
     [CreateAssetMenu(fileName = "Assets/Data/Levels/LevelDataXX.asset", menuName = "Match3D/Create/Level Data", order = 0)]
     public class LevelData : ScriptableObject

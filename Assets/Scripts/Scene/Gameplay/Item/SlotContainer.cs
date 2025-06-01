@@ -7,15 +7,29 @@ using UnityEngine;
 public class SlotContainer
 {
     private Transform[] _slots;
-    private ItemBase[] _items;
+    private ItemBase[] _pickedItems;
     private (int offset, int count) _lastMatchedItems;
 
-    public bool IsFull => _items != null && _items[_slots.Length - 1];
+    public bool IsFull => _pickedItems != null && _pickedItems[_slots.Length - 1];
 
     public void SetSlotTransforms(Transform[] slots)
     {
         _slots = slots;
-        _items = new ItemBase[_slots.Length];
+        _pickedItems = new ItemBase[_slots.Length];
+    }
+    
+    public bool ContainsItem(ItemBase item)
+    {
+        if (_pickedItems == null)
+            return false;
+
+        foreach (var pickedItem in _pickedItems)
+        {
+            if (pickedItem != null && pickedItem.Type == item.Type)
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -28,12 +42,12 @@ public class SlotContainer
         int matchingItemsCount = 0;
         _lastMatchedItems = (0, 0);
 
-        for (int i = 0; i < _items.Length; i++)
+        for (int i = 0; i < _pickedItems.Length; i++)
         {
             // Handle existing item in the current slot
-            if (_items[i] != null)
+            if (_pickedItems[i] != null)
             {
-                bool isMatchingType = _items[i].Type == item.Type;
+                bool isMatchingType = _pickedItems[i].Type == item.Type;
 
                 // Found a matching item
                 if (isMatchingType)
@@ -61,7 +75,7 @@ public class SlotContainer
             }
 
             // Place the item in the current slot
-            _items[i] = item;
+            _pickedItems[i] = item;
             _lastMatchedItems.count = matchingItemsCount + 1;
 
             // Return the match data with the current slot position and all matched items
@@ -77,12 +91,12 @@ public class SlotContainer
     /// </summary>
     private void ShiftItemsToMakeRoom(int index)
     {
-        for (int j = _items.Length - 1; j > index; j--)
+        for (int j = _pickedItems.Length - 1; j > index; j--)
         {
-            _items[j] = _items[j - 1];
-            if (_items[j] != null)
+            _pickedItems[j] = _pickedItems[j - 1];
+            if (_pickedItems[j] != null)
             {
-                _items[j].ShiftNextSlot(_slots[j].position);
+                _pickedItems[j].ShiftNextSlot(_slots[j].position);
             }
         }
     }
@@ -94,7 +108,7 @@ public class SlotContainer
     {
         return new MatchData(
             _slots[slotIndex].position,
-            new ArraySegment<ItemBase>(_items, matchOffset, matchCount)
+            new ArraySegment<ItemBase>(_pickedItems, matchOffset, matchCount)
         );
     }
 
@@ -102,31 +116,31 @@ public class SlotContainer
     {
         for (var i = _lastMatchedItems.offset; i < _lastMatchedItems.offset + _lastMatchedItems.count; i++)
         {
-            _items[i] = null;
+            _pickedItems[i] = null;
         }
 
-        for (var i = _lastMatchedItems.offset + _lastMatchedItems.count; i < _items.Length; i++)
+        for (var i = _lastMatchedItems.offset + _lastMatchedItems.count; i < _pickedItems.Length; i++)
         {
-            if (!_items[i])
+            if (!_pickedItems[i])
             {
                 continue;
             }
 
             var newIndex = i - _lastMatchedItems.count;
-            _items[newIndex] = _items[i];
-            _items[i].ShiftPreviousSlot(_slots[newIndex].position, _lastMatchedItems.count);
-            _items[i] = null;
+            _pickedItems[newIndex] = _pickedItems[i];
+            _pickedItems[i].ShiftPreviousSlot(_slots[newIndex].position, _lastMatchedItems.count);
+            _pickedItems[i] = null;
         }
     }
 
     public void ClearAllSlots()
     {
-        for (var i = 0; i < _items.Length; i++)
+        for (var i = 0; i < _pickedItems.Length; i++)
         {
-            if (_items[i] != null)
+            if (_pickedItems[i] != null)
             {
-                _items[i].gameObject.SetActive(false);
-                _items[i] = null;
+                _pickedItems[i].gameObject.SetActive(false);
+                _pickedItems[i] = null;
             }
         }
     }

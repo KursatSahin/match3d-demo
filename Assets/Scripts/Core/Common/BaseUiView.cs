@@ -6,11 +6,11 @@ namespace Match3d.Core.Common
     {
         #region Inspector
 
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] protected Canvas _canvas;
 
         #endregion
 
-        public GameObject Go => gameObject;
+        public GameObject GameObject => gameObject;
 
         public virtual void SetUICamera(Camera cam)
         {

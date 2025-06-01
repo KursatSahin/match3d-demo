@@ -27,12 +27,12 @@ MonoBehaviour:
     - type: 5
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 9
     - type: 6
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 6
     - type: 7
       minVolume: 3
       maxVolume: 5
-      count: 5
+      count: 12

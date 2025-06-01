@@ -6,75 +6,94 @@ using UnityEngine;
 
 namespace Match3d.Core.Scene
 {
+    /// <summary>
+    /// Handles asynchronous scene loading and management.
+    /// </summary>
     public static class SceneLoader
     {
-        public static async UniTask LoadSceneAsync(string sceneName, CancellationToken cancellationToken = default, IProgress<float> progress = null)
+        /// <summary>
+        /// Loads a scene asynchronously, initializes it, and unloads the previous scene.
+        /// </summary>
+        /// <param name="name">The name of the scene to load.</param>
+        /// <param name="token">Cancellation token for async operations.</param>
+        /// <param name="progress">Optional progress reporter.</param>
+        /// <param name="options">Optional scene options.</param>
+        public static async UniTask LoadSceneAsync(string name, CancellationToken token, IProgress<float> progress = null, ISceneOptions options = null)
         {
             try
             {
-                var currentScene = SceneManager.GetActiveScene();
-
-                if (string.IsNullOrEmpty(sceneName))
+                var oldScene = SceneManager.GetActiveScene();
+                if (oldScene.name == name)
                 {
-                    Debug.LogError("Scene name is null or empty");
+                    Debug.Log($"Scene '{name}' is already active. Skipping load.");
                     return;
                 }
 
-                if (currentScene.name == sceneName)
+                var loadSceneAsync = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+                if (loadSceneAsync == null)
                 {
-                    Debug.LogWarning($"Scene {sceneName} is already loaded");
+                    Debug.LogError($"Failed to start loading scene '{name}'.");
                     return;
                 }
-                
-                var loadSceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
-                if(loadSceneAsync == null)
-                {
-                    Debug.LogError($"Scene {sceneName} not found");
-                    return;
-                }
-
                 loadSceneAsync.allowSceneActivation = false;
 
-                await UniTask.WaitUntil(() => 
-                {
-                    progress?.Report(loadSceneAsync.progress / 2);
-                    return loadSceneAsync.progress >= 0.9f;
-                }, cancellationToken: cancellationToken);
+                await WaitForSceneLoadProgress(loadSceneAsync, progress, token);
 
-                var loadedScene = SceneManager.GetSceneByName(sceneName);
+                var loadedScene = SceneManager.GetSceneByName(name);
                 loadSceneAsync.allowSceneActivation = true;
 
-                await UniTask.WaitUntil(() => loadedScene.isLoaded, cancellationToken: cancellationToken);
+                await UniTask.WaitUntil(() => loadedScene.isLoaded, cancellationToken: token);
 
-                var rootObjects = loadedScene.GetRootGameObjects();
-                ISceneBootstrapper sceneBootstrapper = null;
-                
-                foreach (var rootObject in rootObjects)
-                {
-                    if (!rootObject.TryGetComponent(out sceneBootstrapper))
-                    {
-                        continue;
-                    }
-                    await sceneBootstrapper.InitializeAsync(cancellationToken, progress);
-                    break;
-                }
-                
+                var sceneInitializer = await InitializeSceneBootstrapper(loadedScene, token, options, progress);
                 progress?.Report(1f);
-                await UniTask.Yield(cancellationToken: cancellationToken);
+                await UniTask.Yield(cancellationToken: token);
 
                 SceneManager.SetActiveScene(loadedScene);
-                cancellationToken = (sceneBootstrapper as MonoBehaviour).GetCancellationTokenOnDestroy();
+                token = (sceneInitializer as MonoBehaviour)?.GetCancellationTokenOnDestroy() ?? token;
 
-                var unloadSceneAsync = SceneManager.UnloadSceneAsync(currentScene);
-                await unloadSceneAsync.ToUniTask(cancellationToken: cancellationToken);
+                var unloadSceneAsync = SceneManager.UnloadSceneAsync(oldScene);
+                await unloadSceneAsync.ToUniTask(cancellationToken: token);
 
-                sceneBootstrapper?.OnSceneActivated();
+                sceneInitializer?.OnSceneActivated();
             }
-            catch (OperationCanceledException exception)
+            catch (OperationCanceledException)
             {
-                Debug.LogError($"Scene {sceneName} loading canceled");
+                Debug.LogWarning($"Scene loading for '{name}' was canceled.");
             }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Exception during scene loading: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Waits for the scene to reach 90% load progress.
+        /// </summary>
+        private static async UniTask WaitForSceneLoadProgress(AsyncOperation loadSceneAsync, IProgress<float> progress, CancellationToken token)
+        {
+            await UniTask.WaitUntil(() =>
+            {
+                progress?.Report(loadSceneAsync.progress / 2);
+                return loadSceneAsync.progress >= 0.9f;
+            }, cancellationToken: token);
+        }
+
+        /// <summary>
+        /// Finds and initializes the first ISceneBootstrapper in the scene.
+        /// </summary>
+        private static async UniTask<ISceneBootstrapper> InitializeSceneBootstrapper(UnityEngine.SceneManagement.Scene loadedScene, CancellationToken token, ISceneOptions options, IProgress<float> progress)
+        {
+            var rootObjects = loadedScene.GetRootGameObjects();
+            foreach (var rootObject in rootObjects)
+            {
+                if (rootObject.TryGetComponent(out ISceneBootstrapper sceneInitializer))
+                {
+                    await sceneInitializer.InitializeAsync(token, options, progress);
+                    return sceneInitializer;
+                }
+            }
+            Debug.LogWarning($"No ISceneBootstrapper found in scene '{loadedScene.name}'.");
+            return null;
         }
     }
 }
